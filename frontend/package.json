@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "esbuild": "^0.14.47"
+  },
+  "scripts": {
+    "start": ".\\node_modules\\.bin\\esbuild main.ts --watch --bundle --outfile=out.js"
+  }
+}

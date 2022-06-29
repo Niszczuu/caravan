@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "esbuild": "^0.14.47",
+    "express": "^4.18.1",
+    "node": "^18.4.0",
+    "node-fetch": "^3.2.6"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "typescript": "^4.7.4"
+  },
+  "scripts": {
+    "start": ".\\node_modules\\.bin\\esbuild server.ts --watch --bundle --outfile=out.js --platform=node"
+  }
+}

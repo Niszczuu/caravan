@@ -1,0 +1,133 @@
+body{
+    background: #555555;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+#gameScreen{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#mainMenu{
+    background-image: url("menuBackground.png");
+    width:100%;
+    height: 100%;
+    position: absolute;
+    background-position: center;
+    bacbackground-size: 100%;
+    background-size: auto;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+
+#menuOptions{
+    margin: auto;
+    height: 100%;
+    display: flex;
+    flex-direction:column;
+    width:30vh;
+    left: calc( 50vw - 15vh);
+}
+
+#craftravanMenuLogo{
+    top:5%;
+    height: 20%;
+    width:85%;
+    position: relative;
+    background-image: url("caravan.png");
+    background-size: 100%;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    display: grid;
+    justify-content: center;
+    grid-template:
+            "nothing" 1fr
+            "text" 1fr
+            "nothing" 1fr;
+    user-select: none;
+}
+
+#menuWriting{
+    color: white;
+    font-family: 'MinecraftiaRegular';
+    font-weight: bold;
+    font-style: normal;
+    font-size:120%;
+    text-shadow: 3px 3px chocolate;
+    text-align: center;
+    grid-row: 2;
+    max-font-size: 120%;
+    overflow: hidden;
+}
+
+.mainMenuOption{
+    background-image: url("option.png");
+    display: block;
+    height: 25%;
+    background-size: 100%;
+    margin-top: 5vw;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.mainMenuOptionWriting{
+    font-family: 'MinecraftiaRegular';
+    font-weight: bold;
+    font-style: normal;
+    font-size:150%;
+    text-shadow: 3px 3px chocolate;
+    text-align: center;
+    margin-top:calc(22% - 18px);
+    display: block;
+}
+
+.mainMenuOptionWriting:hover{
+    color:sandybrown;
+    cursor: pointer;
+    text-shadow: 3px 3px darkred;
+}
+
+
+#caravanSelectScreen {
+    height: calc(90% - 10px);
+    display: block;
+    border: 5px solid sandybrown;
+    position: absolute;
+    top:5%;
+    left: 20%;
+    background: #ffebae;
+    width:60%;
+    border-style:inset;
+    outline-style: inset;
+    outline: 5px solid saddlebrown;
+    overflow-y: auto;
+    overflow-x: hidden
+}
+
+#caravanSelectScreen::-webkit-scrollbar {
+    display: none;
+}
+
+#caravanSelectScreen h1 {
+    text-align: center;
+    font-size:40px;
+    font-family: 'MinecraftiaRegular';
+    font-weight: bold;
+    font-style: normal;
+    color: saddlebrown;
+    text-shadow: 4px 4px sandybrown;
+    user-select: none;
+}
+
+#caravanOptions {
+    overflow-y: auto;
+    width:90%;
+    margin-left:5%;
+    display: flex;
+    flex-direction: column;
+}
