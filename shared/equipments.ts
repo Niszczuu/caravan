@@ -1,61 +1,132 @@
-export class TradeGood {
+import {wood} from "./tradeGoods";
+
+export class Equipment {
     name: string;
+    description: string;
     defaultValue: number;
+    size: number;
 
-    constructor(nameIn: string, valIn: number) {
-        this.name=nameIn;
-        this.defaultValue=valIn;
+    constructor(nameIn: string, val: number, s: number = 0) {
+        this.name = nameIn;
+        this.defaultValue = val;
+        this.description = "";
+        this.size = s;
     }
 
-    getName(){
-        return this.name;
-    }
-
-    getDefaultValue(){
-        return this.defaultValue;
-    }
-}
-
-export class LuxuryGood extends TradeGood{
-    rarity: number;
-
-    constructor(name:string,value:number,rarityIn:number) {
-        super(name,value);
-        this.rarity=rarityIn;
-    }
-
-    getRarity(){
-        return this.rarity;
+    setDescription(desc: string) {
+        this.description = desc;
     }
 
 }
 
-//LIST OF TRADE GOODS USED EVERYWHERE ELSE (simplyfing editing)
-export let tradeGoods: TradeGood[]=[];
+// KLASA WOZU
+const defaultWagonCost: number = 600;
+const defaultWagonWidth: number = 2;
+const defaultWagonHeight: number = 3;
+const defaultWagonCapacity: number=100;
+const wagonCapacityUpgradeAmount: number = 50;
+const wagonHorsesNeeded: number = 2;
+
+export class Wagon extends Equipment {
+    front: number;
+    back: number;
+    left: number;
+    right: number;
+    capacity: number;
+    height: number;
+    width: number;
+    upgraded: boolean;
+    horsesNeeded: number;
+
+    constructor(frontlvl: number = 1, backlvl: number = 1, leftlvl: number = 1, rightlvl: number = 1) {
+        super("wagon", defaultWagonCost);
+        this.front = frontlvl;
+        this.back = backlvl;
+        this.left = leftlvl;
+        this.right = rightlvl;
+        this.height = defaultWagonHeight;
+        this.width = defaultWagonWidth;
+        this.capacity=defaultWagonCapacity;
+        this.upgraded = false;
+        this.horsesNeeded = wagonHorsesNeeded;
+        this.upgraded=false;
+    }
+
+    upgradeCapacity() {
+        this.capacity += defaultWagonCapacity;
+        this.width += 1;
+        this.width += 1;
+        this.upgraded = true;
+        this.horsesNeeded += 1;
+    }
+
+    upgradeLeft() {
+        this.left += 1;
+    }
+
+    upgradeRight() {
+        this.right += 1;
+    }
+
+    upgradeFront() {
+        this.front += 1;
+    }
+
+    upgradeBack() {
+        this.back += 1;
+    }
+
+    upgradeAllSides() {
+        this.upgradeLeft();
+        this.upgradeRight();
+        this.upgradeFront();
+        this.upgradeBack();
+    }
+
+}
 
 
-//DEFAULT TRADE GOODS
-let wood = new TradeGood("wood",10);
-tradeGoods.push(wood);
-let stone = new TradeGood("stone",25);
-tradeGoods.push(stone);
-let coal = new TradeGood("coal",35);
-tradeGoods.push(coal);
-let iron = new TradeGood("iron",80);
-tradeGoods.push(iron);
-let gold = new TradeGood("gold",120);
-tradeGoods.push(gold);
-let wheat = new TradeGood("wheat",1);
-tradeGoods.push(wheat);
-let bread = new TradeGood("bread",5);
-tradeGoods.push(bread);
-let fish = new TradeGood("fish",4);
-tradeGoods.push(fish);
-let wool = new TradeGood("wool",15);
-tradeGoods.push(wool);
+// KLASA KONIA
+const defaultHorseValue = 200;
 
-//LUXURY TRADE GOODS
-let diamond = new LuxuryGood("wood",200,50);
-tradeGoods.push(diamond);
+export class Horse extends Equipment {
+    horsePower: number = 1;
+    armorLevel: number = 0;
 
-//TRADE GOODS WITH SPECIAL FUNCTIONALITY ??? (ex. fireworks)
+    constructor(armorlvl: number = 0) {
+        super("horse", defaultHorseValue);
+        this.horsePower = 1;
+        this.armorLevel = armorlvl;
+    }
+
+    upgradeArmor() {
+        this.armorLevel += 1;
+    }
+}
+
+
+// KLASA DREWNIANEJ BARYKADY
+const woodenBarrierHealth = 250;
+const woodenBarrierSize = 2;
+
+export class WoodenBarrier extends Equipment {
+    health: number = woodenBarrierHealth;
+    level: number = 1;
+
+    constructor() {
+        super("woodenBarrier", wood.getDefaultValue(), woodenBarrierSize);
+        this.health = woodenBarrierHealth;
+        this.level = 1;
+    }
+
+}
+
+export const equipmentsList: Equipment[] = [];
+
+const exampleWagon: Wagon = new Wagon();
+equipmentsList.push(exampleWagon);
+const exampleHorse: Horse = new Horse();
+equipmentsList.push(exampleHorse);
+const exampleWoodenBarrier: WoodenBarrier = new WoodenBarrier();
+equipmentsList.push(exampleWoodenBarrier);
+
