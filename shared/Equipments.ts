@@ -1,4 +1,4 @@
-import {wood} from "./tradeGoods";
+import {wood} from "./TradeGoods";
 
 export class Equipment {
     name: string;

@@ -1,6 +1,6 @@
-import {Equipment, equipmentsList, Horse, Wagon, WoodenBarrier} from "./equipments";
-import {tradeGoods} from "./tradeGoods";
-import {CharacterSheet} from "./characterSheet";
+import {Equipment, equipmentsList, Horse, Wagon, WoodenBarrier} from "./Equipments";
+import {tradeGoods} from "./TradeGoods";
+import {CharacterSheet} from "./CharacterSheet";
 
 const defaultCampTimer = 3;
 const defaultStartingEmeralds = 300;
@@ -32,14 +32,24 @@ export class Caravan {
         for (let i = 0; i < tradeGoods.length; i++) {
             this.goodsAmount[i] = Math.round(Math.random() * 10);
         }
+        this.generateRandomCharacters();
+        this.generateRandomWagons();
+        this.generateRandomwBarricades();
+        this.emeralds=defaultStartingEmeralds+Math.floor(Math.random()*randomEmeralds);
+
+    }
+
+    generateRandomCharacters(){
         let amountOfCharacters: number = Math.round(Math.random() * 3 + 1);
         for (let i = 0; i < amountOfCharacters; i++) {
             let newCharacter: CharacterSheet = new CharacterSheet();
             newCharacter.randomize();
             this.characters.push(newCharacter);
         }
+    }
+
+    generateRandomWagons(){
         const wagonsAmount: number = 1;
-        const wBarricadesAmount: number = Math.round(Math.random() * 10);
         for (let i = 0; i < wagonsAmount; i++) {
             let newWagon: Wagon = new Wagon();
             this.equipment.push(newWagon);
@@ -47,14 +57,14 @@ export class Caravan {
                 let newHorse: Horse = new Horse();
             }
         }
+    }
 
+    generateRandomwBarricades(){
+        const wBarricadesAmount: number = Math.round(Math.random() * 10);
         for (let i = 0; i < wBarricadesAmount; i++) {
             let newBarricade: WoodenBarrier = new WoodenBarrier();
             this.equipment.push(newBarricade);
         }
-
-        this.emeralds=defaultStartingEmeralds+Math.floor(Math.random()*randomEmeralds);
-
     }
 
 
@@ -62,19 +72,3 @@ export class Caravan {
 
 export const exampleCaravanInventory: Caravan = new Caravan();
 exampleCaravanInventory.generateRandom();
-
-
-
-// export class Counter{
-//     amount:number;
-//
-//     constructor() {
-//         this.amount=0;
-//     }
-//
-//     getAmount(){
-//         return this.amount;
-//     }
-//
-//
-// }
